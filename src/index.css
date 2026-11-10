@@ -1024,7 +1024,7 @@ header nav .active svg {
   padding: 2rem 0 9rem;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 5rem 1.25rem;
+  gap: 3rem 1.75rem;
   align-items: start;
 }
 .gallery article {
@@ -1035,36 +1035,92 @@ header nav .active svg {
 }
 .gallery article.tall {
   grid-column: span 3;
-  margin-top: 3rem;
+  margin-top: 5rem;
 }
-.image {
+.image-frame {
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 420px;
   overflow: hidden;
-  border: 8px solid #f3ead9;
-  border-radius: 0.35rem;
+  border-radius: 0.55rem;
   background: #1a120d;
   box-shadow:
-    0 18px 38px #0006,
-    inset 0 0 0 1px #0000001f;
+    0 26px 55px #0008,
+    inset 0 0 0 1px #00000033;
+  transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.tall .image {
-  height: 460px;
+.tall .image-frame {
+  height: 520px;
 }
-.wide .image {
-  height: 370px;
+.wide .image-frame {
+  height: 360px;
 }
-.image img {
+.image-frame mat {
+  position: absolute;
+  inset: 14px;
+  border: 1px solid #ffffff18;
+  border-radius: 0.3rem;
+  pointer-events: none;
+}
+.image-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(0.72);
-  transition: 0.8s;
+  object-position: center 35%;
+  filter: saturate(0.85) contrast(1.04);
+  transition: 0.7s ease;
 }
-.image:hover img {
+.image-frame:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 34px 70px #0009,
+    0 0 0 1px #d6a34844;
+}
+.image-frame:hover img {
   transform: scale(1.06);
-  filter: saturate(1);
+  filter: saturate(1) contrast(1.06);
+}
+.image-frame .frame-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font: 700 0.85rem "Cormorant Garamond", serif;
+  color: #1a120d;
+  background: linear-gradient(135deg, #f3d9a8, #d6a348);
+  box-shadow: 0 4px 14px #d6a34844;
+}
+.image-frame .frame-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  padding: 1.6rem 1.3rem 1.2rem;
+  background: linear-gradient(0deg, #0a0811f2 0%, transparent 70%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.image-frame .frame-caption small {
+  font: 500 0.62rem "Manrope", sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #e8d3a6;
+}
+.image-frame .frame-caption strong {
+  font: italic 600 1.25rem "Cormorant Garamond", serif;
+  color: #fff;
+}
+.image-frame .frame-caption span {
+  color: #b4a288;
+  font-size: 0.72rem;
 }
 .image > i,
 .image > span {
@@ -1211,106 +1267,89 @@ header nav .active svg {
 .photo-slots {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 0.8rem;
+  gap: 1.6rem;
 }
 .photo-slots article {
   position: relative;
-  min-height: 250px;
+  min-height: 280px;
   overflow: hidden;
   border: 8px solid #f3ead9;
   outline: 1px solid #b07a3f44;
   outline-offset: -1px;
-  border-radius: 0.35rem;
+  border-radius: 0.4rem;
   background: linear-gradient(145deg, #21160e, #18100a);
-  box-shadow: 0 12px 28px #0005;
-  transition: 0.35s ease;
+  box-shadow:
+    0 14px 30px #0006,
+    inset 0 0 0 1px #00000033;
+  transition: 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .photo-slots article:nth-child(3n + 2) {
-  transform: translateY(1.5rem);
+  transform: translateY(1.6rem);
 }
 .photo-slots article:hover {
+  transform: translateY(-8px) scale(1.02);
   outline-color: #d6a34888;
   box-shadow:
-    0 18px 38px #0007,
-    0 0 0 1px #d6a34822;
-}
-.photo-slots label {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-.photo-slots label:before,
-.photo-slots label:after {
-  content: "";
-  position: absolute;
-  width: 45%;
-  height: 1px;
-  background: #ffffff0d;
-  transform: rotate(45deg);
-}
-.photo-slots label:after {
-  transform: rotate(-45deg);
-}
-.photo-slots input {
-  display: none;
-}
-.photo-slots label > span {
-  position: absolute;
-  top: 0.8rem;
-  left: 0.9rem;
-  color: #6f604e;
-  font-size: 0.55rem;
-}
-.photo-slots label svg {
-  z-index: 1;
-  width: 28px;
-  color: #9b805e;
-  stroke-width: 1.2;
-  transition: 0.3s;
-}
-.photo-slots label strong {
-  z-index: 1;
-  margin-top: 0.8rem;
-  font: 500 1.05rem Cormorant Garamond;
-}
-.photo-slots label small {
-  z-index: 1;
-  margin-top: 0.25rem;
-  color: #88755d;
-  font-size: 0.5rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-.photo-slots label:hover svg {
-  color: var(--purple);
-  transform: translateY(-4px);
+    0 26px 55px #0009,
+    0 0 0 1px #d6a34855,
+    0 0 30px #d6a34822;
 }
 .photo-slots article > img {
   width: 100%;
   height: 100%;
-  min-height: 250px;
+  min-height: 280px;
   object-fit: cover;
-  animation: image-reveal 0.6s ease;
+  object-position: center 35%;
+  filter: saturate(0.85) contrast(1.04) brightness(0.96);
+  transition: 0.55s ease;
 }
-.photo-slots article > button {
+.photo-slots article:hover > img {
+  transform: scale(1.08);
+  filter: saturate(1.05) contrast(1.08) brightness(1.02);
+}
+.photo-slots article::before {
+  content: "";
   position: absolute;
-  top: 0.65rem;
-  right: 0.65rem;
-  width: 32px;
-  height: 32px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  color: #fff;
-  background: #0b0907b8;
-  backdrop-filter: blur(10px);
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(180deg, transparent 38%, #0a0811e6 88%);
+  opacity: 0.6;
+  transition: 0.4s;
+  pointer-events: none;
 }
-.photo-slots article > button svg {
-  width: 14px;
+.photo-slots article:hover::before {
+  opacity: 0.85;
+}
+.photo-slots article .slot-caption {
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 1.1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  transform: translateY(12px);
+  opacity: 0;
+  transition: 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+.photo-slots article:hover .slot-caption {
+  transform: none;
+  opacity: 1;
+}
+.photo-slots article .slot-caption strong {
+  font: italic 600 1.15rem "Cormorant Garamond", serif;
+  color: #fff;
+  text-shadow: 0 2px 8px #000;
+}
+.photo-slots article .slot-caption small {
+  font: 500 0.62rem "Manrope", sans-serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #e8d3a6;
 }
 .close {
   top: 2rem;
@@ -1821,7 +1860,7 @@ footer > p {
     width: calc(100% - 1rem);
     height: 60px;
   }
-  .brand > span {
+  .brand-name small {
     display: none;
   }
   .hero {
@@ -2928,5 +2967,268 @@ footer {
   .vinyl {
     width: 158px;
     height: 158px;
+  }
+}
+
+/* ---------- Responsive polish (mobile) ---------- */
+@media (max-width: 900px) {
+  header {
+    height: 64px;
+  }
+  .brand-name small {
+    display: none;
+  }
+  .brand-mark {
+    width: 38px;
+    height: 38px;
+    font-size: 1.15rem;
+  }
+  header nav {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
+    padding: 0.6rem;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+    background: #0a0811fa;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: 0.25s;
+  }
+  header nav.open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  header nav button {
+    justify-content: center;
+  }
+  .menu {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    background: #ffffff08;
+    border: 1px solid #ffffff10;
+  }
+  .hero-art {
+    min-height: 430px;
+  }
+  .photo.back {
+    width: 58%;
+    height: 54%;
+  }
+  .photo.front {
+    width: 68%;
+    height: 68%;
+  }
+  .hero-art aside {
+    width: 150px;
+    left: 43%;
+    padding: 1rem;
+  }
+  .marquee {
+    justify-content: center;
+    text-align: center;
+  }
+  .marquee span {
+    display: none;
+  }
+  .page-hero {
+    min-height: 68svh;
+    padding-top: 8rem;
+  }
+  .gallery {
+    display: block;
+    padding-bottom: 6rem;
+  }
+  .gallery article {
+    margin-bottom: 3.5rem !important;
+  }
+  .personal-heading {
+    grid-template-columns: 1fr;
+    padding-top: 5rem;
+  }
+  .photo-slots {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .photo-slots article {
+    min-height: 200px;
+  }
+  .photo-slots article:nth-child(3n + 2) {
+    transform: none;
+  }
+  .music-player {
+    bottom: 0.5rem;
+    width: calc(100% - 1rem);
+    min-height: 67px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.65rem;
+    border-radius: 1rem;
+  }
+  .music-orb {
+    width: 48px;
+    height: 48px;
+  }
+  .music-copy > strong {
+    font-size: 0.95rem;
+  }
+  .music-progress {
+    grid-template-columns: 1fr;
+  }
+  .music-progress small {
+    display: none;
+  }
+  .music-tools > input,
+  .music-tools > button:first-child {
+    display: none;
+  }
+  .image,
+  .tall .image,
+  .wide .image {
+    height: 430px;
+  }
+  .lightbox > section {
+    width: calc(100% - 2rem);
+    gap: 1rem;
+  }
+  .lightbox section img {
+    max-height: 55vh;
+  }
+  .lightbox > button {
+    top: auto;
+    bottom: 1rem;
+  }
+  .close {
+    top: 1rem !important;
+    bottom: auto !important;
+    right: 1rem;
+  }
+  .prev {
+    left: 1rem;
+  }
+  .next {
+    right: 1rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .wrap {
+    width: calc(100% - 1rem);
+  }
+  .hero-art {
+    min-height: 360px;
+  }
+  .photo.back {
+    width: 62%;
+    height: 50%;
+  }
+  .photo.front {
+    width: 72%;
+    height: 64%;
+  }
+  .hero-art aside {
+    width: 140px;
+    left: 40%;
+    padding: 0.8rem;
+    font-size: 0.8rem;
+  }
+  .page-hero h1,
+  .hero h1 {
+    font-size: clamp(2.6rem, 14vw, 3.4rem);
+  }
+  .photo-slots {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  .photo-slots article {
+    min-height: 180px;
+  }
+  .music-launcher {
+    width: 56px;
+    padding: 0.4rem;
+  }
+  .launcher-orbit {
+    width: 46px;
+    height: 46px;
+  }
+  .music-player {
+    min-height: 62px;
+  }
+}
+
+/* ---------- Bottom tab bar (mobile-friendly navigation) ---------- */
+.tabs {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 110;
+  display: none;
+  align-items: center;
+  justify-content: space-around;
+  gap: 0.4rem;
+  padding: 0.55rem 0.5rem calc(0.55rem + env(safe-area-inset-bottom));
+  border-top: 1px solid #ffffff18;
+  background: linear-gradient(180deg, transparent, #0a0811f2 30%, #0a0811f2);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+.tabs button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 14px;
+  color: #9b8a6e;
+  font: 500 0.62rem "Manrope", sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: 0.25s;
+  min-width: 0;
+}
+.tabs button svg {
+  width: 22px;
+  height: 22px;
+  transition: 0.25s;
+}
+.tabs button:hover {
+  color: #fff;
+  background: #ffffff08;
+}
+.tabs button.active {
+  color: #1a120d;
+  background: linear-gradient(135deg, #f3d9a8, #d6a348);
+  box-shadow: 0 6px 18px #d6a34844;
+}
+.tabs button.active svg {
+  color: #1a120d;
+  transform: scale(1.1);
+}
+.tabs button span {
+  max-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .tabs {
+    display: flex;
+  }
+  main {
+    padding-bottom: calc(88px + env(safe-area-inset-bottom));
+  }
+  .page {
+    padding-bottom: 6rem;
   }
 }

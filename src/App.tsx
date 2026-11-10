@@ -1,8 +1,6 @@
 import {
   ArrowLeft,
   ArrowRight,
-  ChevronLeft,
-  ChevronRight,
   Home,
   Image,
   LockKeyhole,
@@ -21,68 +19,26 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-type Page = "home" | "gallery" | "story" | "notes";
-
-const photos = [
-  [
-    "https://images.unsplash.com/photo-1514439827219-9137a0b99245?auto=format&fit=crop&w=1400&q=86",
-    "City lights",
-    "The kind of night that asks you to stay a little longer.",
-    "Van Mendoza",
-  ],
-  [
-    "https://images.unsplash.com/photo-1671822571090-224109a31b3b?auto=format&fit=crop&w=1200&q=86",
-    "Soft things",
-    "Tenderness lives in ordinary places.",
-    "Chimango Hara",
-  ],
-  [
-    "https://images.unsplash.com/photo-1658042026331-984e620048fc?auto=format&fit=crop&w=1200&q=86",
-    "Somewhere quiet",
-    "No rush. No noise. Just a shared silence.",
-    "Piyush Barhe",
-  ],
-  [
-    "https://images.unsplash.com/photo-1590516554327-3c42f1d8f6cf?auto=format&fit=crop&w=1200&q=86",
-    "Details",
-    "You notice the little things. That is one of your gifts.",
-    "Oleksandra Bardash",
-  ],
-  [
-    "https://images.unsplash.com/photo-1636565950975-92607971542b?auto=format&fit=crop&w=1200&q=86",
-    "In bloom",
-    "Some seasons arrive slowly, then all at once.",
-    "MAK",
-  ],
-  [
-    "https://images.unsplash.com/photo-1617293134227-0ec282f3ed89?auto=format&fit=crop&w=1400&q=86",
-    "After dark",
-    "Every window holds a story. This one’s full of good vibes.",
-    "Li Zhang",
-  ],
-  [
-    "https://images.unsplash.com/photo-1607159990391-f322fe0e64db?auto=format&fit=crop&w=1200&q=86",
-    "For you",
-    "Flowers fade. The feeling behind them never has to.",
-    "Akarsh Gurudeva",
-  ],
-  [
-    "https://images.unsplash.com/photo-1664360339794-1cc72dba84b1?auto=format&fit=crop&w=1200&q=86",
-    "Our little universe",
-    "A corner of the world made warmer by good company.",
-    "Liza Rusalskaya",
-  ],
-  [
-    "https://images.unsplash.com/photo-1570209007085-951f739eb8d0?auto=format&fit=crop&w=1400&q=86",
-    "The long way home",
-    "The best conversations make the journey feel too short.",
-    "Artur Aldyrkhanov",
-  ],
-];
+type Page = "home" | "gallery" | "notes";
 
 const clairePhotos: { src: string; title: string; note: string }[] = [
-  // Add photos by placing files in public/photos/ and listing them here, e.g.:
-  // { src: "/photos/01.jpg", title: "Memory 1", note: "A short note" },
+  { src: "/images/IMG-20261106-WA0004.jpg", title: "Claire", note: "Good vibes, always." },
+  { src: "/images/IMG-20261106-WA0007.jpg", title: "Claire", note: "Good vibes, always." },
+  { src: "/images/IMG-20261106-WA0008.jpg", title: "Claire", note: "Good vibes, always." },
+  { src: "/images/IMG-20261106-WA0010.jpg", title: "Claire", note: "Good vibes, always." },
+  { src: "/images/IMG-20261106-WA0011.jpg", title: "Claire", note: "Good vibes, always." },
+  { src: "/images/IMG-20261106-WA0012.jpg", title: "Claire", note: "Good vibes, always." },
+  { src: "/images/IMG-20261106-WA0013.jpg", title: "Claire", note: "Good vibes, always." },
+  { src: "/images/IMG-20261106-WA0014.jpg", title: "Claire", note: "Good vibes, always." },
+  { src: "/images/IMG-20261106-WA0015.jpg", title: "Claire", note: "Good vibes, always." },
+  { src: "/images/IMG-20261106-WA0016.jpg", title: "Claire", note: "Good vibes, always." },
+  { src: "/images/IMG-20261106-WA0017.jpg", title: "Claire", note: "Good vibes, always." },
+  { src: "/images/IMG-20261106-WA0018.jpg", title: "Claire", note: "Good vibes, always." },
+  { src: "/images/IMG-20261106-WA0019.jpg", title: "Claire", note: "Good vibes, always." },
+  { src: "/images/IMG-20261106-WA0020.jpg", title: "Claire", note: "Good vibes, always." },
+  { src: "/images/IMG-20261106-WA0021.jpg", title: "Claire", note: "Good vibes, always." },
+  { src: "/images/IMG-20261106-WA0023.jpg", title: "Claire", note: "Good vibes, always." },
+  { src: "/images/IMG-20261106-WA0025.jpg", title: "Claire", note: "Good vibes, always." },
 ];
 
 const notes = [
@@ -123,6 +79,7 @@ export default function App() {
   const [page, setPage] = useState<Page>(currentPage);
   const [menu, setMenu] = useState(false);
   const [intro, setIntro] = useState(true);
+  const touchStartX = useRef(0);
   useEffect(() => {
     const timer = setTimeout(() => setIntro(false), 1200);
     const pop = () => setPage(currentPage());
@@ -171,11 +128,31 @@ export default function App() {
           {menu ? <X /> : <Menu />}
         </button>
       </header>
-      <main key={page} className="page">
+      <main
+        key={page}
+        className="page"
+        onTouchStart={(e) => (touchStartX.current = e.touches[0].clientX)}
+        onTouchEnd={(e) => {
+          const dx = touchStartX.current - e.changedTouches[0].clientX;
+          if (Math.abs(dx) < 60) return;
+          if (page === "home" && dx < 0) go("gallery");
+          else if (page === "gallery" && dx > 0) go("notes");
+          else if (page === "gallery" && dx < 0) go("home");
+          else if (page === "notes" && dx > 0) go("gallery");
+        }}
+      >
         {page === "home" && <Landing go={go} />}
         {page === "gallery" && <Gallery />}
         {page === "notes" && <Notes />}
       </main>
+      <nav className="tabs" aria-label="Quick navigation">
+        {nav.map(([id, label, Icon]) => (
+          <button className={page === id ? "active" : ""} onClick={() => go(id)} key={id}>
+            <Icon />
+            <span>{label}</span>
+          </button>
+        ))}
+      </nav>
       <MusicPlayer />
       <footer>
         <button className="brand" onClick={() => go("home")}>
@@ -684,88 +661,9 @@ function PageHero({
 }
 
 function Gallery() {
-  const [active, setActive] = useState<number | null>(null);
-  const [likes, setLikes] = useState<number[]>(() => {
-    try {
-      return JSON.parse(localStorage.getItem("claire-likes") || "[]");
-    } catch {
-      return [];
-    }
-  });
-  useEffect(() => {
-    document.body.style.overflow = active === null ? "" : "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [active]);
-  const move = (n: number) =>
-    active !== null && setActive((active + n + photos.length) % photos.length);
-  const like = (i: number) => {
-    const next = likes.includes(i) ? likes.filter((x) => x !== i) : [...likes, i];
-    setLikes(next);
-    localStorage.setItem("claire-likes", JSON.stringify(next));
-  };
   return (
     <div>
-      <PageHero
-        kicker="The memory archive"
-        text="A collection of fun moments, good vibes, and snapshots worth keeping."
-      >
-        Moments worth
-        <br />
-        <em>looking back on.</em>
-      </PageHero>
-      <section className="gallery wrap">
-        {photos.map((p, i) => (
-          <article className={i % 4 === 0 ? "tall" : i % 3 === 0 ? "wide" : ""} key={p[1]}>
-            <button className="image" onClick={() => setActive(i)}>
-              <img src={p[0]} alt={p[2]} loading="lazy" />
-              <i>0{i + 1}</i>
-              <span>
-                Open memory <ArrowRight />
-              </span>
-            </button>
-            <div>
-              <section>
-                <h2>{p[1]}</h2>
-                <p>{p[2]}</p>
-              </section>
-              <button
-                className={likes.includes(i) ? "liked" : ""}
-                onClick={() => like(i)}
-                aria-label="Favorite"
-              >
-                <Star fill={likes.includes(i) ? "currentColor" : "none"} />
-              </button>
-            </div>
-          </article>
-        ))}
-      </section>
       <ClairePhotoGallery />
-      {active !== null && (
-        <div className="lightbox" role="dialog" aria-modal="true">
-          <button className="close" onClick={() => setActive(null)}>
-            <X />
-          </button>
-          <button className="prev" onClick={() => move(-1)}>
-            <ChevronLeft />
-          </button>
-          <section>
-            <img src={photos[active][0]} alt={photos[active][2]} />
-            <div>
-              <small>
-                0{active + 1} / 0{photos.length}
-              </small>
-              <h2>{photos[active][1]}</h2>
-              <p>{photos[active][2]}</p>
-              <small>Photography by {photos[active][3]} via Unsplash</small>
-            </div>
-          </section>
-          <button className="next" onClick={() => move(1)}>
-            <ChevronRight />
-          </button>
-        </div>
-      )}
     </div>
   );
 }
@@ -795,7 +693,6 @@ function ClairePhotoGallery() {
           <span className="kicker">Claire’s photos</span>
           <h2>Her moments belong here.</h2>
         </div>
-        <p>Photos added in code from <code>public/photos/</code>.</p>
       </div>
       <div className="photo-slots">
         {clairePhotos.map((photo, index) => (
