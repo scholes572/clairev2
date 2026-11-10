@@ -1,0 +1,10 @@
+{
+  "description": "A project-sharing site that helps friends showcase creative work and share files in one easy-to-access place.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
