@@ -120,7 +120,7 @@ export default function App() {
           {nav.map(([id, label, Icon]) => (
             <button className={page === id ? "active" : ""} onClick={() => go(id)} key={id}>
               <Icon />
-              {label}
+              <span>{label}</span>
             </button>
           ))}
         </nav>
@@ -155,13 +155,6 @@ export default function App() {
       </nav>
       <MusicPlayer />
       <footer>
-        <button className="brand" onClick={() => go("home")}>
-          <span className="brand-mark">C</span>
-          <span className="brand-name">
-            <strong>For Claire</strong>
-            <small>Made for a great friend.</small>
-          </span>
-        </button>
         <p>Some people feel like home.</p>
       </footer>
     </div>
@@ -432,7 +425,7 @@ function MusicPlayer() {
           <span>
             {unavailable ? "Awaiting audio file" : playing ? "Now playing" : "Ready to play"}
           </span>
-          <h2>{unavailable ? "Your song belongs here" : "Claire’s Song"}</h2>
+          <h2>{unavailable ? "Your song belongs here" : "Favourite song"}</h2>
           <p>
             {unavailable
               ? "Add claire-song.mp3 to the public/audio folder."
@@ -559,7 +552,7 @@ function Landing({ go }: { go: (p: Page) => void }) {
       <div className="marquee">
         <span>
           <Sparkles />
-          Made for a friend
+          Made for you
         </span>
         <em>Great friends, good vibes, and funny moments.</em>
         <span>

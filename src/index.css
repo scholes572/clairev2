@@ -116,42 +116,42 @@ header {
   transform: translateX(-50%);
   width: min(1180px, calc(100% - 2.5rem));
   height: 72px;
-  padding: 0.6rem 0.8rem 0.6rem 0.7rem;
+  padding: 0.6rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #ffffff14;
+  border: 1px solid #ffffff18;
   border-radius: 24px;
-  background: linear-gradient(180deg, #110d18ee, #0a0811ee);
-  backdrop-filter: blur(22px) saturate(140%);
-  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  background: linear-gradient(180deg, #16111aee, #0a0811ee);
+  backdrop-filter: blur(26px) saturate(150%);
+  -webkit-backdrop-filter: blur(26px) saturate(150%);
   box-shadow:
-    0 22px 50px #000a,
-    inset 0 1px 0 #ffffff12;
+    0 26px 60px #000a,
+    inset 0 1px 0 #ffffff14;
 }
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.9rem;
   color: #fff;
   cursor: pointer;
 }
 .brand-mark {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   display: grid;
   place-items: center;
-  border-radius: 13px;
-  font: 700 1.3rem "Cormorant Garamond", serif;
+  border-radius: 14px;
+  font: 700 1.35rem "Cormorant Garamond", serif;
   color: #1a120d;
-  background: linear-gradient(135deg, #f3d9a8, #d6a348);
+  background: linear-gradient(135deg, #f7e2b2, #d6a348);
   box-shadow:
-    0 6px 18px #d6a34844,
-    inset 0 1px 0 #ffffff66;
-  transition: 0.3s;
+    0 8px 22px #d6a34855,
+    inset 0 1px 0 #ffffff70;
+  transition: 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .brand:hover .brand-mark {
-  transform: rotate(-6deg) scale(1.05);
+  transform: rotate(-8deg) scale(1.06);
 }
 .brand-name {
   display: flex;
@@ -159,7 +159,7 @@ header {
   line-height: 1.05;
 }
 .brand-name strong {
-  font: 700 1.08rem "Cormorant Garamond", serif;
+  font: 700 1.1rem "Cormorant Garamond", serif;
   letter-spacing: 0.02em;
 }
 .brand-name small {
@@ -170,14 +170,18 @@ header {
 }
 header nav {
   display: flex;
-  gap: 0.35rem;
+  gap: 0.4rem;
+  padding: 0.3rem;
+  background: #ffffff06;
+  border: 1px solid #ffffff10;
+  border-radius: 99px;
 }
 header nav button {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 0.55rem;
-  padding: 0.7rem 1.15rem;
+  gap: 0.6rem;
+  padding: 0.62rem 1.2rem;
   border-radius: 99px;
   color: #b4a288;
   font: 500 0.72rem "Manrope", sans-serif;
@@ -195,7 +199,7 @@ header nav button svg {
 }
 header nav button:hover {
   color: #fff;
-  background: #ffffff08;
+  background: #ffffff0c;
   transform: translateY(-2px);
 }
 header nav button:hover svg {
@@ -203,8 +207,8 @@ header nav button:hover svg {
 }
 header nav .active {
   color: #1a120d;
-  background: linear-gradient(135deg, #f3d9a8, #e0b068);
-  box-shadow: 0 6px 18px #d6a34833;
+  background: linear-gradient(135deg, #f7e2b2, #d6a348);
+  box-shadow: 0 8px 22px #d6a34844;
 }
 header nav .active svg {
   color: #1a120d;
@@ -214,7 +218,7 @@ header nav .active svg {
   height: 46px;
   display: grid;
   place-items: center;
-  border-radius: 13px;
+  border-radius: 14px;
   background: #ffffff08;
   border: 1px solid #ffffff10;
   color: #fff;
@@ -3230,5 +3234,96 @@ footer {
   }
   .page {
     padding-bottom: 6rem;
+  }
+}
+
+/* ---------- Redesigned mobile navbar ---------- */
+@media (max-width: 900px) {
+  header {
+    top: 0.75rem;
+    width: calc(100% - 1.25rem);
+    height: 60px;
+    padding: 0.5rem;
+    border-radius: 20px;
+  }
+  .brand {
+    gap: 0.6rem;
+  }
+  .brand-mark {
+    width: 38px;
+    height: 38px;
+    font-size: 1.15rem;
+    border-radius: 12px;
+  }
+  .brand-name strong {
+    font-size: 0.95rem;
+  }
+  .brand-name small {
+    display: none;
+  }
+  .menu {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+  .menu svg {
+    width: 19px;
+  }
+  header nav {
+    position: fixed;
+    top: calc(100% + 0.75rem);
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    width: calc(100% - 1.25rem);
+    max-width: 420px;
+    padding: 0.7rem 0.5rem;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0.25rem;
+    border: 1px solid #ffffff18;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #16111aee, #0a0811ee);
+    backdrop-filter: blur(26px) saturate(150%);
+    -webkit-backdrop-filter: blur(26px) saturate(150%);
+    box-shadow: 0 20px 50px #000a;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(-10px) scale(0.96);
+    transition: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    z-index: 105;
+  }
+  header nav.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  header nav button {
+    flex: 1;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.55rem 0.4rem;
+    border-radius: 14px;
+    min-width: 0;
+  }
+  header nav button svg {
+    width: 22px;
+    height: 22px;
+  }
+  header nav button span {
+    font-size: 0.58rem;
+    letter-spacing: 0.05em;
+  }
+  header nav button:hover {
+    background: #ffffff0c;
+    transform: translateY(-2px);
+  }
+  header nav .active {
+    background: linear-gradient(135deg, #f7e2b2, #d6a348);
+    color: #1a120d;
+    box-shadow: 0 6px 18px #d6a34844;
+  }
+  header nav .active svg {
+    color: #1a120d;
   }
 }
