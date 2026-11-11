@@ -520,7 +520,6 @@ function Background() {
 }
 
 function Landing({ go }: { go: (p: Page) => void }) {
-  const [magic, setMagic] = useState(0);
   return (
     <>
       <section className="hero wrap">
@@ -562,85 +561,19 @@ function Landing({ go }: { go: (p: Page) => void }) {
           <Star className="spark" />
         </div>
       </section>
-      <div className="marquee">
-        <span>
-          <Sparkles />
-          Made for you
-        </span>
-        <em>Great friends, good vibes, and funny moments.</em>
-        <span>
-          Just for Claire <Star />
-        </span>
-      </div>
-      <section className={`surprise wrap ${magic > 0 ? "cosmic-active" : ""}`}>
-        <div className="cosmic-card">
-          <div className="cosmic-idle">
-            <div className="cosmic-heart">
-              <Sparkles />
-              <i />
-              <i />
-            </div>
-            <span className="kicker">One more thing</span>
-            <h2>You’re an awesome friend.</h2>
-            <p>A year and a half of friendship, plenty of laughs, and vibes that never miss.</p>
-            <button className="primary cosmic-trigger" onClick={() => setMagic(magic + 1)}>
-              <Sparkles />
-              Open the vibe check
-              <span />
-            </button>
-          </div>
-          {magic > 0 && <CosmicReveal key={magic} replay={() => setMagic(magic + 1)} />}
+      <section className="wrap">
+        <div className="marquee">
+          <span>
+            <Sparkles />
+            Made for you
+          </span>
+          <em>Great friends, good vibes, and funny moments.</em>
+          <span>
+            Just for Claire <Star />
+          </span>
         </div>
       </section>
     </>
-  );
-}
-
-function CosmicReveal({ replay }: { replay: () => void }) {
-  return (
-    <div className="cosmic-reveal">
-      <div className="cosmic-flash" />
-      <div className="portal" aria-hidden="true">
-        <div className="portal-glow" />
-        <div className="portal-ring ring-one" />
-        <div className="portal-ring ring-two" />
-        <div className="portal-ring ring-three" />
-        <div className="portal-core">
-          <Sparkles />
-        </div>
-      </div>
-      <div className="cosmic-stars" aria-hidden="true">
-        {Array.from({ length: 46 }).map((_, i) => (
-          <i
-            key={i}
-            style={
-              {
-                "--r": `${i * 7.83}deg`,
-                "--d": `${120 + (i % 7) * 42}px`,
-                "--delay": `${(i % 8) * 0.035}s`,
-              } as React.CSSProperties
-            }
-          />
-        ))}
-      </div>
-      <div className="comets" aria-hidden="true">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <i key={i} />
-        ))}
-      </div>
-      <div className="cosmic-message">
-        <span>1.5 years of friendship and counting</span>
-        <h2>
-          Always bringing
-          <em>the vibes.</em>
-        </h2>
-        <p>Funny, full of energy, and a great friend to have around. Here’s to more good times.</p>
-        <button onClick={replay}>
-          <Sparkles />
-          Play it again
-        </button>
-      </div>
-    </div>
   );
 }
 
