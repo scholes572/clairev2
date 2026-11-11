@@ -3327,3 +3327,39 @@ footer {
     color: #1a120d;
   }
 }
+
+/* ---------- Reduce motion on mobile for stability ---------- */
+@media (max-width: 720px) {
+  html {
+    scroll-behavior: auto;
+  }
+  .background,
+  .background span,
+  .background i,
+  .grain,
+  .leopard-field,
+  .leopard-field:after,
+  .prowl-light,
+  .marquee:after,
+  .marquee {
+    animation: none !important;
+    transition: none !important;
+  }
+  .page {
+    animation: none;
+  }
+  .hero-art,
+  .hero-art aside,
+  .cosmic-card,
+  .cosmic-reveal,
+  .portal,
+  .portal-ring,
+  .portal-glow,
+  .portal-core,
+  .cosmic-stars,
+  .comets,
+  .cosmic-flash,
+  .cosmic-heart i {
+    animation: none !important;
+  }
+}
