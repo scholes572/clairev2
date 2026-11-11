@@ -80,6 +80,7 @@ export default function App() {
   const [menu, setMenu] = useState(false);
   const [intro, setIntro] = useState(true);
   const touchStartX = useRef(0);
+  const touchStarted = useRef(false);
   useEffect(() => {
     const timer = setTimeout(() => setIntro(false), 1200);
     const pop = () => setPage(currentPage());
@@ -131,8 +132,13 @@ export default function App() {
       <main
         key={page}
         className="page"
-        onTouchStart={(e) => (touchStartX.current = e.touches[0].clientX)}
+        onTouchStart={(e) => {
+          touchStarted.current = true;
+          touchStartX.current = e.touches[0].clientX;
+        }}
         onTouchEnd={(e) => {
+          if (!touchStarted.current) return;
+          touchStarted.current = false;
           const dx = touchStartX.current - e.changedTouches[0].clientX;
           if (Math.abs(dx) < 60) return;
           if (page === "home" && dx < 0) go("gallery");
