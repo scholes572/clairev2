@@ -80,6 +80,7 @@ export default function App() {
   const [menu, setMenu] = useState(false);
   const [intro, setIntro] = useState(true);
   const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
   const touchStarted = useRef(false);
   useEffect(() => {
     const timer = setTimeout(() => setIntro(false), 1200);
@@ -135,12 +136,18 @@ export default function App() {
         onTouchStart={(e) => {
           touchStarted.current = true;
           touchStartX.current = e.touches[0].clientX;
+          touchStartY.current = e.touches[0].clientY;
         }}
         onTouchEnd={(e) => {
           if (!touchStarted.current) return;
           touchStarted.current = false;
-          const dx = touchStartX.current - e.changedTouches[0].clientX;
-          if (Math.abs(dx) < 60) return;
+          const endX = e.changedTouches[0].clientX;
+          const endY = e.changedTouches[0].clientY;
+          const dx = touchStartX.current - endX;
+          const dy = touchStartY.current - endY;
+          // Only treat as a swipe when it is clearly horizontal and long enough,
+          // so a tap or a vertical scroll never changes the page.
+          if (Math.abs(dx) < 90 || Math.abs(dx) < Math.abs(dy)) return;
           if (page === "home" && dx < 0) go("gallery");
           else if (page === "gallery" && dx > 0) go("notes");
           else if (page === "gallery" && dx < 0) go("home");
