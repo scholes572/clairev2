@@ -483,7 +483,7 @@ header nav .active svg {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(0.8) contrast(1.02);
+  filter: saturate(1) contrast(1.03);
   transition: 1s;
 }
 .photo:hover img {
@@ -531,9 +531,10 @@ header nav .active svg {
 .hero-art aside {
   position: absolute;
   z-index: 5;
-  top: 32%;
-  left: 48%;
+  top: 62%;
+  left: 70%;
   width: 185px;
+  transform: rotate(6deg);
   padding: 1.3rem;
   border: 1px solid var(--line);
   border-radius: 1rem;
@@ -646,7 +647,7 @@ header nav .active svg {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(0.7);
+  filter: saturate(1);
   transition: 0.8s;
 }
 .preview-grid button:hover img {
@@ -1071,7 +1072,7 @@ header nav .active svg {
   height: 100%;
   object-fit: cover;
   object-position: center 35%;
-  filter: saturate(0.85) contrast(1.04);
+  filter: saturate(1) contrast(1.06);
   transition: 0.7s ease;
 }
 .image-frame:hover {
@@ -1304,7 +1305,7 @@ header nav .active svg {
   min-height: 280px;
   object-fit: cover;
   object-position: center 35%;
-  filter: saturate(0.85) contrast(1.04) brightness(0.96);
+  filter: saturate(1.05) contrast(1.08) brightness(1.02);
   transition: 0.55s ease;
 }
 .photo-slots article:hover > img {
@@ -1893,8 +1894,10 @@ footer > p {
   }
   .hero-art aside {
     width: 150px;
-    left: 43%;
+    left: 70%;
+    top: 62%;
     padding: 1rem;
+    transform: rotate(6deg);
   }
   .marquee {
     justify-content: center;
@@ -3032,8 +3035,10 @@ footer {
   }
   .hero-art aside {
     width: 150px;
-    left: 43%;
+    left: 70%;
+    top: 62%;
     padding: 1rem;
+    transform: rotate(6deg);
   }
   .marquee {
     justify-content: center;
@@ -3138,9 +3143,11 @@ footer {
   }
   .hero-art aside {
     width: 140px;
-    left: 40%;
+    left: 60%;
+    top: 62%;
     padding: 0.8rem;
     font-size: 0.8rem;
+    transform: rotate(6deg);
   }
   .page-hero h1,
   .hero h1 {
@@ -3612,4 +3619,13 @@ video {
 }
 .photo-slots article.has-photo {
   transform-style: preserve-3d;
+}
+
+@media (max-width: 900px) {
+  .image-frame img {
+    object-position: center center;
+  }
+  .photo-slots article > img {
+    object-position: center center;
+  }
 }
