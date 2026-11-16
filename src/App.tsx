@@ -23,7 +23,6 @@ type Page = "home" | "gallery" | "notes";
 
 const clairePhotos: { src: string; title: string; note: string }[] = [
   { src: "/images/IMG-20261106-WA0004.jpg", title: "Claire", note: "Good vibes, always." },
-  { src: "/images/IMG-20261106-WA0007.jpg", title: "Claire", note: "Good vibes, always." },
   { src: "/images/IMG-20261106-WA0008.jpg", title: "Claire", note: "Good vibes, always." },
   { src: "/images/IMG-20261106-WA0010.jpg", title: "Claire", note: "Good vibes, always." },
   { src: "/images/IMG-20261106-WA0011.jpg", title: "Claire", note: "Good vibes, always." },
@@ -608,6 +607,9 @@ function Gallery() {
 }
 
 function ClairePhotoGallery() {
+  const [opened, setOpened] = useState<number[]>([]);
+  const toggle = (i: number) =>
+    setOpened((x) => (x.includes(i) ? x.filter((n) => n !== i) : [...x, i]));
   if (clairePhotos.length === 0) {
     return (
       <section className="personal-gallery wrap">
@@ -632,14 +634,42 @@ function ClairePhotoGallery() {
           <span className="kicker">Claire’s photos</span>
           <h2>Her moments belong here.</h2>
         </div>
+        <p className="gift-hint">Tap each gift to unwrap a photo.</p>
       </div>
       <div className="photo-slots">
         {clairePhotos.map((photo, index) => (
-          <article className="has-photo" key={photo.src + index}>
-            <img src={photo.src} alt={photo.title || `Claire’s photo ${index + 1}`} />
-            <div className="slot-caption">
-              <strong>{photo.title || `Photo ${index + 1}`}</strong>
-              {photo.note && <small>{photo.note}</small>}
+          <article
+            className={"has-photo" + (opened.includes(index) ? " opened" : "")}
+            key={photo.src + index}
+            onClick={() => toggle(index)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") toggle(index);
+            }}
+          >
+            <div className="gift-box">
+              <div className="gift-lid" />
+              <div className="gift-body" />
+            </div>
+            <div className="gift-blast" />
+            <div className="falling-hearts">
+              {Array.from({ length: 10 }).map((_, i) => (
+                <span key={i} style={{ left: `${8 + i * 9}%`, animationDelay: `${i * 0.08}s` }}>♥</span>
+              ))}
+            </div>
+            <div className="fireworks">
+              {Array.from({ length: 16 }).map((_, i) => (
+                <span key={i} style={{ "--a": `${i * 22.5}deg` } as React.CSSProperties} />
+              ))}
+            </div>
+
+            <div className="gift-reveal">
+              <img src={photo.src} alt={photo.title || `Claire’s photo ${index + 1}`} />
+              <div className="slot-caption">
+                <strong>{photo.title || `Photo ${index + 1}`}</strong>
+                {photo.note && <small>{photo.note}</small>}
+              </div>
             </div>
           </article>
         ))}
