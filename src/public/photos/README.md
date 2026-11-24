@@ -1,13 +1,13 @@
-# Claire's photos (add in code)
+# Irene's photos (add in code)
 
 1. Put image files in this folder, for example:
    - `public/photos/01.jpg`
    - `public/photos/02.png`
 
-2. Edit `src/App.tsx` and update the `clairePhotos` array near the top:
+2. Edit `src/App.tsx` and update the `irenePhotos` array near the top:
 
 ```ts
-const clairePhotos = [
+const irenePhotos = [
   { src: "/photos/01.jpg", title: "Memory 1", note: "A short note" },
   { src: "/photos/02.png", title: "Memory 2", note: "Another note" },
 ];

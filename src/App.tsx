@@ -21,23 +21,23 @@ import { useEffect, useRef, useState } from "react";
 
 type Page = "home" | "gallery" | "notes";
 
-const clairePhotos: { src: string; title: string; note: string }[] = [
-  { src: "/images/IMG-20261106-WA0004.jpg", title: "Claire", note: "Good vibes, always." },
-  { src: "/images/IMG-20261106-WA0008.jpg", title: "Claire", note: "Good vibes, always." },
-  { src: "/images/IMG-20261106-WA0010.jpg", title: "Claire", note: "Good vibes, always." },
-  { src: "/images/IMG-20261106-WA0011.jpg", title: "Claire", note: "Good vibes, always." },
-  { src: "/images/IMG-20261106-WA0012.jpg", title: "Claire", note: "Good vibes, always." },
-  { src: "/images/IMG-20261106-WA0013.jpg", title: "Claire", note: "Good vibes, always." },
-  { src: "/images/IMG-20261106-WA0014.jpg", title: "Claire", note: "Good vibes, always." },
-  { src: "/images/IMG-20261106-WA0015.jpg", title: "Claire", note: "Good vibes, always." },
-  { src: "/images/IMG-20261106-WA0016.jpg", title: "Claire", note: "Good vibes, always." },
-  { src: "/images/IMG-20261106-WA0017.jpg", title: "Claire", note: "Good vibes, always." },
-  { src: "/images/IMG-20261106-WA0018.jpg", title: "Claire", note: "Good vibes, always." },
-  { src: "/images/IMG-20261106-WA0019.jpg", title: "Claire", note: "Good vibes, always." },
-  { src: "/images/IMG-20261106-WA0020.jpg", title: "Claire", note: "Good vibes, always." },
-  { src: "/images/IMG-20261106-WA0021.jpg", title: "Claire", note: "Good vibes, always." },
-  { src: "/images/IMG-20261106-WA0023.jpg", title: "Claire", note: "Good vibes, always." },
-  { src: "/images/IMG-20261106-WA0025.jpg", title: "Claire", note: "Good vibes, always." },
+const irenePhotos: { src: string; title: string; note: string }[] = [
+  { src: "/images/IMG-20261118-WA0005.jpg", title: "Irene", note: "Good vibes, always." },
+  { src: "/images/IMG-20261118-WA0006.jpg", title: "Irene", note: "Good vibes, always." },
+  { src: "/images/IMG-20261118-WA0007.jpg", title: "Irene", note: "Good vibes, always." },
+  { src: "/images/IMG-20261118-WA0009.jpg", title: "Irene", note: "Good vibes, always." },
+  { src: "/images/IMG-20261118-WA0010.jpg", title: "Irene", note: "Good vibes, always." },
+  { src: "/images/IMG-20261118-WA0011.jpg", title: "Irene", note: "Good vibes, always." },
+  { src: "/images/IMG-20261118-WA0012.jpg", title: "Irene", note: "Good vibes, always." },
+  { src: "/images/IMG-20261118-WA0014.jpg", title: "Irene", note: "Good vibes, always." },
+  { src: "/images/IMG-20261118-WA0015.jpg", title: "Irene", note: "Good vibes, always." },
+  { src: "/images/IMG-20261118-WA0017.jpg", title: "Irene", note: "Good vibes, always." },
+  { src: "/images/IMG-20261118-WA0019.jpg", title: "Irene", note: "Good vibes, always." },
+  { src: "/images/IMG-20261118-WA0022.jpg", title: "Irene", note: "Good vibes, always." },
+  { src: "/images/IMG-20261118-WA0025.jpg", title: "Irene", note: "Good vibes, always." },
+  { src: "/images/IMG-20261118-WA0026.jpg", title: "Irene", note: "Good vibes, always." },
+  { src: "/images/IMG-20261118-WA0029.jpg", title: "Irene", note: "Good vibes, always." },
+  { src: "/images/IMG-20261118-WA0030.jpg", title: "Irene", note: "Good vibes, always." },
 ];
 
 const notes = [
@@ -93,7 +93,7 @@ export default function App() {
   useEffect(() => {
     scrollTo({ top: 0, behavior: "smooth" });
     setMenu(false);
-    document.title = `${nav.find(([id]) => id === page)?.[1]} | For Claire`;
+    document.title = `${nav.find(([id]) => id === page)?.[1]} | For Irene`;
   }, [page]);
   const go = (next: Page) => {
     if (next === page) return;
@@ -104,16 +104,16 @@ export default function App() {
     <div className="shell">
       {intro && (
         <div className="intro">
-          <b>C</b>
-          <span>A little world for Claire</span>
+          <b>I</b>
+          <span>A little world for Irene</span>
         </div>
       )}
       <Background />
       <header>
         <button className="brand" onClick={() => go("home")}>
-          <span className="brand-mark">C</span>
+          <span className="brand-mark">I</span>
           <span className="brand-name">
-            <strong>For Claire</strong>
+            <strong>For Irene</strong>
             <small>Friendship corner</small>
           </span>
         </button>
@@ -363,11 +363,11 @@ function MusicPlayer() {
   return (
     <aside
       className={`music-experience ${playing ? "is-playing" : ""} ${expanded ? "expanded" : ""}`}
-      aria-label="Claire’s soundtrack"
+      aria-label="Irene’s soundtrack"
     >
       <audio
         ref={audio}
-        src="/audio/claire-song.mp3"
+        src="/audio/irene-song.mp3"
         loop
         muted={muted}
         onPlay={() => setPlaying(true)}
@@ -383,7 +383,7 @@ function MusicPlayer() {
           </span>
         </span>
         <span className="launcher-copy">
-          <small>{playing ? "Now playing" : "Claire’s soundtrack"}</small>
+          <small>{playing ? "Now playing" : "Irene’s soundtrack"}</small>
           <strong>{playing ? "Feel the moment" : "Open the player"}</strong>
         </span>
         <span className="mini-wave">
@@ -409,7 +409,7 @@ function MusicPlayer() {
         </button>
         <div className="player-heading">
           <span>
-            <Sparkles />A soundtrack for Claire
+            <Sparkles />A soundtrack for Irene
           </span>
           <small>Music makes memories breathe</small>
         </div>
@@ -423,8 +423,8 @@ function MusicPlayer() {
             <span className="vinyl-groove groove-one" />
             <span className="vinyl-groove groove-two" />
             <span className="vinyl-label">
-              <b>C</b>
-              <small>For Claire</small>
+              <b>I</b>
+              <small>For Irene</small>
             </span>
           </div>
           <canvas
@@ -440,7 +440,7 @@ function MusicPlayer() {
           <h2>{unavailable ? "Your song belongs here" : "Favourite song"}</h2>
           <p>
             {unavailable
-              ? "Add claire-song.mp3 to the public/audio folder."
+              ? "Add irene-song.mp3 to the public/audio folder."
               : "One song, a thousand memories."}
           </p>
         </div>
@@ -525,10 +525,10 @@ function Landing({ go }: { go: (p: Page) => void }) {
         <div className="hero-copy">
           <div className="kicker">A little corner for a great friend</div>
           <h1>
-            For Claire, <em>full of vibes and laughs.</em>
+            For Irene, <em>full of vibes and laughs.</em>
           </h1>
           <p>
-            A fun little corner of the internet for Claire. We met about a year and a half ago and
+            A fun little corner of the internet for Irene. We met about a year and a half ago and
             have been close friends ever since, so here’s to the jokes, the energy, and all the good
             times.
           </p>
@@ -547,7 +547,7 @@ function Landing({ go }: { go: (p: Page) => void }) {
             <img src="/images/IMG-20261020-WA0004.jpg" alt="Me" />
           </figure>
           <figure className="photo front">
-            <img src="/images/IMG-20261106-WA0020.jpg" alt="Claire" />
+            <img src="/images/IMG-20261118-WA0010.jpg" alt="Irene" />
             <figcaption>
               <Sparkles />
               Good vibes
@@ -568,7 +568,7 @@ function Landing({ go }: { go: (p: Page) => void }) {
           </span>
           <em>Great friends, good vibes, and funny moments.</em>
           <span>
-            Just for Claire <Star />
+            Just for Irene <Star />
           </span>
         </div>
       </section>
@@ -601,26 +601,26 @@ function PageHero({
 function Gallery() {
   return (
     <div>
-      <ClairePhotoGallery />
+      <IrenePhotoGallery />
     </div>
   );
 }
 
-function ClairePhotoGallery() {
+function IrenePhotoGallery() {
   const [opened, setOpened] = useState<number[]>([]);
   const toggle = (i: number) =>
     setOpened((x) => (x.includes(i) ? x.filter((n) => n !== i) : [...x, i]));
-  if (clairePhotos.length === 0) {
+  if (irenePhotos.length === 0) {
     return (
       <section className="personal-gallery wrap">
         <div className="personal-heading">
           <div>
-            <span className="kicker">Claire’s photos</span>
+            <span className="kicker">Irene’s photos</span>
             <h2>Add her photos in code.</h2>
           </div>
           <p>
             Put image files in <code>public/photos/</code> and add entries to{" "}
-            <code>clairePhotos</code> in <code>src/App.tsx</code>. See{" "}
+            <code>irenePhotos</code> in <code>src/App.tsx</code>. See{" "}
             <code>public/photos/README.md</code>.
           </p>
         </div>
@@ -631,13 +631,13 @@ function ClairePhotoGallery() {
     <section className="personal-gallery wrap">
       <div className="personal-heading">
         <div>
-          <span className="kicker">Claire’s photos</span>
+          <span className="kicker">Irene’s photos</span>
           <h2>Her moments belong here.</h2>
         </div>
         <p className="gift-hint">Tap each gift to unwrap a photo.</p>
       </div>
       <div className="photo-slots">
-        {clairePhotos.map((photo, index) => (
+        {irenePhotos.map((photo, index) => (
           <article
             className={"has-photo" + (opened.includes(index) ? " opened" : "")}
             key={photo.src + index}
@@ -665,7 +665,7 @@ function ClairePhotoGallery() {
             </div>
 
             <div className="gift-reveal">
-              <img src={photo.src} alt={photo.title || `Claire’s photo ${index + 1}`} />
+              <img src={photo.src} alt={photo.title || `Irene’s photo ${index + 1}`} />
               <div className="slot-caption">
                 <strong>{photo.title || `Photo ${index + 1}`}</strong>
                 {photo.note && <small>{photo.note}</small>}
@@ -710,7 +710,7 @@ function Notes() {
               <i>0{i + 1}</i>
               <Star fill="currentColor" />
               <span>
-                <small>A note for Claire</small>
+                <small>A note for Irene</small>
                 <p>{n[2]}</p>
               </span>
               <button onClick={() => toggle(i)}>

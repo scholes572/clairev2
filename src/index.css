@@ -483,7 +483,7 @@ header nav .active svg {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(1) contrast(1.03);
+  filter: saturate(1.35) contrast(1.1);
   transition: 1s;
 }
 .photo:hover img {
@@ -506,7 +506,13 @@ header nav .active svg {
   border-radius: 0.45rem;
   transform: rotate(-3deg);
 }
-.photo.front:after,
+.photo.front:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent 50%, rgba(7, 5, 13, 0.25));
+  pointer-events: none;
+}
 .preview-grid button:after,
 .image:after {
   content: "";
