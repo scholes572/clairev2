@@ -528,9 +528,8 @@ function Landing({ go }: { go: (p: Page) => void }) {
             For Irene, <em>full of vibes and laughs.</em>
           </h1>
           <p>
-            A fun little corner of the internet for Irene. We met about a year and a half ago and
-            have been close friends ever since, so here’s to the jokes, the energy, and all the good
-            times.
+            You're a genuinely nice person, and it's always lovely coming across people with such a
+            good vibe. Keep being yourself, keep smiling, and never stop being amazing!
           </p>
           <div className="actions">
             <button className="primary" onClick={() => go("gallery")}>
